@@ -39,12 +39,14 @@ const generateAlbum = (pics) => {
     const img = document.createElement("img");
     img.src = pic.src.tiny;
     img.className = "bd-placeholder-img card-img-top";
+    img.addEventListener("click", () => seeDetail(pic.id));
     card.appendChild(img);
     const cardBody = document.createElement("div");
     cardBody.className = "card-body";
     const title = document.createElement("h5");
     title.className = "card-title";
     title.textContent = pic.photographer;
+    title.addEventListener("click", () => seeDetail(pic.id));
     const text = document.createElement("p");
     text.className = "card-text";
     text.textContent = pic.alt;
@@ -88,6 +90,10 @@ const beginSearch = () => {
   event.preventDefault();
   const input = document.getElementById("searchText").value;
   fetchImages(input);
+};
+
+const seeDetail = (picId) => {
+  window.location.assign("./detail.html?picId=" + picId);
 };
 
 primeBtn.addEventListener("click", () => fetchImages("space"));
